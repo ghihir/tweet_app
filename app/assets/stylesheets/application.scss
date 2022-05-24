@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.tweet {
+  overflow-wrap: break-all;
+  width: 800px;
+  border: thin solid black;
+  margin: 20px;
+  padding: 5px;
+
+  .user {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    font-size: 15px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+  }
+  
+  .created_at {
+    font-size: 10px;
+    font-style: italic;
+    color: gray;
+  }
+}

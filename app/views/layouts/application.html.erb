@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TweetApp</title>
+    <title>tweet app</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application',
+                               'data-turbolinks-track': 'reload' %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
   </head>
-
   <body>
-    <%= yield %>
+    <header>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-success"><%= message %></div>
+      <% end %>
+      <div class="nav">
+        <h1>tweet app</h1>
+        <ul>
+          <li><%= link_to "投稿一覧", posts_path %></li>
+        </ul>
+      </div>
+    </header>
+    
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    <main>
+
   </body>
 </html>

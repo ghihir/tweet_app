@@ -1,24 +1,22 @@
-# README
+# tweet app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
 
-Things you may want to cover:
+投稿機能のあるアプリケーションです（学習用）。
 
-* Ruby version
+## 実装済み機能
 
-* System dependencies
+### 投稿機能
+- 新規投稿
+- 編集
+- 削除
 
-* Configuration
+### ユーザー登録
+- 新規登録
+- ユーザー情報の編集
+- 退会（投稿も全て削除される）
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ログイン機能
+- 投稿にはログインが必要
+- ログイン中の投稿者以外は投稿の編集・削除はできない
+- ログイン中のユーザー以外はユーザー情報の編集、退会はできない

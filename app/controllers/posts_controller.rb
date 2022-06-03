@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  before_action :correct_user_required, only: [:edit, :destroy]
+
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def new
@@ -8,10 +10,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.save
-    flash[:notice] = "投稿しました"
-    redirect_to posts_url
+    @post = Post.new(post_params.merge(user_id: current_user.id))
+    if @post.save
+      flash[:notice] = "投稿しました"
+      redirect_to posts_url
+    else
+      render :new
+    end
   end
 
   def edit
@@ -36,5 +41,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def correct_user_required
+    post = Post.find(params[:id])
+    unless post.user_id == session[:user_id]
+      flash[:notice] = "ログインしてください"
+      redirect_to root_url
+    end
   end
 end

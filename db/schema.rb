@@ -10,12 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_23_003017) do
+ActiveRecord::Schema.define(version: 2022_05_29_071809) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "{:null=>false, :index=>true}_id"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["{:null=>false, :index=>true}_id"], name: "index_posts_on_{:null=>false, :index=>true}_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "profile"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

@@ -22,6 +22,14 @@
         <h1>tweet app</h1>
         <ul>
           <li><%= link_to "投稿一覧", posts_path %></li>
+          <li><%= link_to "ユーザー一覧", users_path %></li>
+          <% if current_user %>
+            <li><%= link_to "マイページ", user_path(current_user) %></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "新規登録", new_user_path %></li>
+            <li><%= link_to "ログイン", login_path %></li>
+          <% end %>
         </ul>
       </div>
     </header>

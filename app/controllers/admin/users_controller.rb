@@ -10,7 +10,8 @@ class Admin::UsersController < ApplicationController
     user.destroy
     posts = Post.where(user_id: params[:id])
     posts.destroy_all
-    redirect_to admin_users_url, notice: "ユーザー情報を削除しました"
+    flash[:notice] = "ユーザー情報を削除しました"
+    redirect_to admin_users_url
   end
 
 end

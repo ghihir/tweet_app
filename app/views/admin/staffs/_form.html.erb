@@ -1,14 +1,12 @@
-<% if @user.errors.present? %>
+<% if staff.errors.present? %>
   <ul>
-    <% @user.errors.full_messages.each do |message| %>
+    <% staff.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
 
-<h2>ユーザー情報の編集</h2>
-
-<%= form_with model: @user, local: true do |f| %>
+<%= form_with model: [:admin, staff], local: true do |f| %>
   <div class="form-group">
     <%= f.label :name, "名前" %>
     <%= f.text_field :name, class: "form-control" %>
@@ -26,12 +24,5 @@
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :profile, "プロフィール" %>
-    <%= f.text_area :profile, rows: 5, class: "form-control" %>
-  </div>
-
   <%= f.submit "登録", class: "btn btn-primary" %>
 <% end %>
-
-<%= link_to "退会", user_path(@user), method: :delete, data: {confirm: "退会してもよろしいですか？"} %>

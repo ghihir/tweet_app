@@ -1,0 +1,6 @@
+<div><%= @staff.name %></div>
+<div><%= @staff.email %></div>
+
+<% if current_staff && @staff.id == current_staff.id %>
+  <%= link_to "編集", edit_admin_staff_path %>
+<% end %>

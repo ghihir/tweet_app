@@ -4,7 +4,7 @@
     <title>tweet app</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all',
+    <%= stylesheet_link_tag    'admin', media: 'all',
                                'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application',
                                'data-turbolinks-track': 'reload' %>
@@ -20,15 +20,14 @@
       <% end %>
       <div class="nav">
         <h1>tweet app</h1>
+        <h2>管理者画面</h2>
         <ul>
-          <li><%= link_to "投稿一覧", posts_path %></li>
-          <li><%= link_to "ユーザー一覧", users_path %></li>
-          <% if current_user %>
-            <li><%= link_to "マイページ", user_path(current_user) %></li>
-            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "新規登録", new_user_path %></li>
-            <li><%= link_to "ログイン", login_path %></li>
+          <% if current_staff %>
+            <li><%= link_to "投稿一覧", admin_posts_path %></li>
+            <li><%= link_to "ユーザー一覧", admin_users_path %></li>
+            <li><%= link_to "マイページ", admin_staff_path(current_staff) %></li>
+            <li><%= link_to "スタッフの新規登録", new_admin_staff_path %></li>
+            <li><%= link_to "ログアウト", admin_logout_path, method: :delete %></li>
           <% end %>
         </ul>
       </div>
@@ -39,12 +38,6 @@
         <%= yield %>
       </div>
     <main>
-
-    <footer>
-      <div class="admin-link">
-        <%= link_to "管理者用", admin_login_path %>
-      </div>
-    </footer>
 
   </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_29_071809) do
+ActiveRecord::Schema.define(version: 2022_06_07_124356) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2022_05_29_071809) do
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
     t.index ["{:null=>false, :index=>true}_id"], name: "index_posts_on_{:null=>false, :index=>true}_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
